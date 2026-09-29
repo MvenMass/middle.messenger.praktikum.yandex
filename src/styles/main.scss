@@ -1,0 +1,23 @@
+@use 'variables' as *;
+@use 'utilities';
+@use 'auth';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  font-size: $font-size-base;
+  color: $color-text;
+  background: $color-background;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "Учебный мессенджер, проектная работа первого спринта",
+  "main": "index.js",
+    "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "start": "npm run build && vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MvenMass/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MvenMass/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/MvenMass/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "sass": "1.105.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.1"
+  },
+  "dependencies": {
+    "handlebars": "4.7.9"
+  }
+}

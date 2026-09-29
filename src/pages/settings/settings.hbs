@@ -1,0 +1,49 @@
+<main class="settings">
+  <div class="settings__column">
+    <header class="settings__header">
+      <nav>
+        <a class="settings__back-link" href="/messenger" aria-label="Назад к чатам">{{> IconBack}}</a>
+      </nav>
+      <h1 class="settings__title">Настройки</h1>
+    </header>
+
+    <section class="settings__section settings__section_profile">
+      <form class="avatar-upload">
+        <label class="avatar-upload__label">
+          {{> Avatar initials=user.initials color=user.color size="large"}}
+          <span class="avatar-upload__overlay">{{> IconCamera}}</span>
+          <span class="visually-hidden">Изменить аватар</span>
+          <input class="avatar-upload__input visually-hidden" type="file" name="avatar" accept="image/*">
+        </label>
+      </form>
+      <h2 class="settings__name">{{user.firstName}} {{user.secondName}}</h2>
+      <p class="settings__login">@{{user.login}}</p>
+    </section>
+
+    <section class="settings__section">
+      <h2 class="settings__section-title">Данные профиля</h2>
+      <form class="settings__form">
+        {{> Input label="Имя" name="first_name" type="text" value=user.firstName}}
+        {{> Input label="Фамилия" name="second_name" type="text" value=user.secondName}}
+        {{> Input label="Имя в чате" name="display_name" type="text" value=user.displayName}}
+        {{> Input label="Логин" name="login" type="text" value=user.login}}
+        {{> Input label="Почта" name="email" type="email" value=user.email}}
+        {{> Input label="Телефон" name="phone" type="tel" value=user.phone}}
+        {{> Button text="Сохранить" type="submit"}}
+      </form>
+    </section>
+
+    <section class="settings__section">
+      <h2 class="settings__section-title">Пароль</h2>
+      <form class="settings__form">
+        {{> Input label="Текущий пароль" name="old_password" type="password"}}
+        {{> Input label="Новый пароль" name="new_password" type="password"}}
+        {{> Button text="Изменить пароль" type="submit"}}
+      </form>
+    </section>
+
+    <section class="settings__section settings__section_logout">
+      {{> Link href="/" text="Выйти из аккаунта" modifier="danger"}}
+    </section>
+  </div>
+</main>

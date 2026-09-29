@@ -1,0 +1,17 @@
+<main class="auth">
+  <section class="auth__card">
+    <div class="auth__logo">{{> IconChat}}</div>
+    <h1 class="auth__title">Регистрация</h1>
+    <p class="auth__subtitle">Заполните данные, чтобы создать аккаунт</p>
+    <form class="auth__form">
+      {{> Input label="Почта" name="email" type="email"}}
+      {{> Input label="Логин" name="login" type="text"}}
+      {{> Input label="Имя" name="first_name" type="text"}}
+      {{> Input label="Фамилия" name="second_name" type="text"}}
+      {{> Input label="Телефон" name="phone" type="tel"}}
+      {{> Input label="Пароль" name="password" type="password"}}
+      {{> Button text="Зарегистрироваться" type="submit"}}
+    </form>
+    {{> Link href="/" text="Уже есть аккаунт? Войти"}}
+  </section>
+</main>

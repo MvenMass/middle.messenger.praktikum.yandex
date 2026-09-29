@@ -1,0 +1,18 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.link {
+  font-size: $font-size-base;
+  color: $color-primary;
+  text-decoration: none;
+
+  @include focus-ring;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &_danger {
+    color: $color-danger;
+  }
+}

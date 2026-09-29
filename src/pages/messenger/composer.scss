@@ -1,0 +1,40 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 752px;
+  margin: 0 auto;
+  padding: 0 16px 16px;
+
+  &__field {
+    flex-grow: 1;
+  }
+
+  &__input {
+    width: 100%;
+    height: 54px;
+    padding: 0 20px;
+    border: none;
+    border-radius: $radius-large;
+    background: $color-background;
+    box-shadow: 0 1px 2px rgb(16 35 47 / 15%);
+    outline: none;
+  }
+
+  &__send {
+    @include round-icon-button(54px);
+    @include focus-ring;
+
+    color: $color-background;
+    background: $color-primary;
+    box-shadow: 0 1px 2px rgb(16 35 47 / 15%);
+
+    &:hover {
+      background: $color-primary-dark;
+    }
+  }
+}

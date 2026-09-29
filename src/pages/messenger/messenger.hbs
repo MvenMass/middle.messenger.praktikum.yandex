@@ -1,0 +1,74 @@
+<main class="messenger">
+  <h1 class="visually-hidden">Чаты</h1>
+
+  <aside class="messenger__sidebar">
+    <header class="sidebar-header">
+      <nav class="sidebar-header__nav">
+        <a class="sidebar-header__profile-link" href="/settings" aria-label="Настройки профиля">
+          {{> IconMenu}}
+        </a>
+      </nav>
+      <form class="search" role="search">
+        <label class="search__field">
+          <span class="search__icon">{{> IconSearch}}</span>
+          <input class="search__input" type="search" name="search" placeholder="Поиск">
+        </label>
+      </form>
+    </header>
+
+    <ul class="chat-list">
+      {{#each chats}}
+        <li class="chat-preview{{#if isActive}} chat-preview_active{{/if}}">
+          {{> Avatar initials=initials color=color size="medium"}}
+          <div class="chat-preview__body">
+            <div class="chat-preview__row">
+              <h2 class="chat-preview__title">{{title}}</h2>
+              <time class="chat-preview__time">{{time}}</time>
+            </div>
+            <div class="chat-preview__row">
+              <p class="chat-preview__message">{{lastMessage}}</p>
+              {{#if unreadCount}}
+                <span class="chat-preview__badge">{{unreadCount}}</span>
+              {{/if}}
+            </div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </aside>
+
+  <section class="chat">
+    <header class="chat__header">
+      {{> Avatar initials=activeChat.initials color=activeChat.color size="small"}}
+      <div class="chat__info">
+        <h2 class="chat__title">{{activeChat.title}}</h2>
+        <p class="chat__status">{{activeChat.status}}</p>
+      </div>
+      <button class="chat__menu-button" type="button" aria-label="Действия с чатом">
+        {{> IconMore}}
+      </button>
+    </header>
+
+    <div class="chat__feed">
+      <ul class="message-list">
+        <li class="message-list__date">Сегодня</li>
+        {{#each messages}}
+          <li class="message{{#if isOutgoing}} message_outgoing{{/if}}">
+            <p class="message__text">{{text}}</p>
+            <time class="message__time">{{time}}</time>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <form class="composer">
+      <label class="composer__field">
+        <span class="visually-hidden">Сообщение</span>
+        <input class="composer__input" type="text" name="message" placeholder="Сообщение" autocomplete="off">
+      </label>
+      <button class="composer__send" type="submit" aria-label="Отправить">
+        {{> IconSend}}
+      </button>
+    </form>
+  </section>
+</main>

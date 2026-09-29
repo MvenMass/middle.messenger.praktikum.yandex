@@ -1,0 +1,49 @@
+@use 'sass:list';
+@use '../../styles/variables' as *;
+
+$avatar-gradients: (
+  (#ff885e, #ff516a),
+  (#ffcd6a, #ffa85c),
+  (#82b1ff, #665fff),
+  (#a0de7e, #54cb68),
+  (#53edd6, #28c9b7),
+  (#72d5fd, #2a9ef1),
+  (#e0a2f3, #d669ed)
+);
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  font-weight: 500;
+  color: $color-background;
+  user-select: none;
+
+  &_size_small {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+
+  &_size_medium {
+    width: 54px;
+    height: 54px;
+    font-size: 20px;
+  }
+
+  &_size_large {
+    width: 120px;
+    height: 120px;
+    font-size: 44px;
+  }
+
+  @each $gradient in $avatar-gradients {
+    $index: list.index($avatar-gradients, $gradient);
+
+    &_color_#{$index} {
+      background: linear-gradient(list.nth($gradient, 1), list.nth($gradient, 2));
+    }
+  }
+}
