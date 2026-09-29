@@ -50,9 +50,9 @@ ui/            — картинки с макетами
 
 ## Деплой
 
-Ссылка на netlify: добавлю после деплоя
+Ссылка на netlify: https://messengerpr.netlify.app/
 
-Пул-реквест первого спринта: добавлю когда открою PR
+Пул-реквест первого спринта: https://github.com/MvenMass/middle.messenger.praktikum.yandex/tree/sprint_1
 
 ## Макеты
 
