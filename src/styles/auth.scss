@@ -1,0 +1,56 @@
+@use 'variables' as *;
+
+.auth {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 80px 16px 40px;
+  box-sizing: border-box;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 32px;
+    border-radius: 50%;
+    color: $color-background;
+    background: $color-primary;
+
+    .icon {
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  &__title {
+    margin: 0 0 8px;
+    font-size: $font-size-title;
+    font-weight: 500;
+  }
+
+  &__subtitle {
+    margin: 0 0 32px;
+    font-size: $font-size-base;
+    line-height: 1.4;
+    text-align: center;
+    color: $color-text-secondary;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+}

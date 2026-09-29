@@ -1,0 +1,84 @@
+@use '../../styles/variables' as *;
+
+.chat-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px;
+  border-radius: $radius-medium;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background: $color-surface;
+  }
+
+  &__body {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    & + & {
+      margin-top: 4px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__time {
+    flex-shrink: 0;
+    font-size: 12px;
+    color: $color-text-secondary;
+  }
+
+  &__message {
+    margin: 0;
+    overflow: hidden;
+    color: $color-text-secondary;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__badge {
+    flex-shrink: 0;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: 11px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: center;
+    color: $color-background;
+    background: $color-primary;
+  }
+
+  &_active,
+  &_active:hover {
+    color: $color-background;
+    background: $color-primary;
+  }
+
+  &_active &__time,
+  &_active &__message {
+    color: $color-background;
+  }
+
+  &_active &__badge {
+    color: $color-primary;
+    background: $color-background;
+  }
+}

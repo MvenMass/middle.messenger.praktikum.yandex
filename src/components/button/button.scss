@@ -1,0 +1,21 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.button {
+  width: 100%;
+  height: 54px;
+  padding: 0 20px;
+  border: none;
+  border-radius: $radius-medium;
+  font-weight: 500;
+  color: $color-background;
+  background: $color-primary;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  @include focus-ring;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+}

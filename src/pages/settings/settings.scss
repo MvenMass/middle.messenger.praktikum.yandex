@@ -1,0 +1,116 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.settings {
+  min-height: 100vh;
+  padding: 0 16px 40px;
+  background: $color-surface;
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 64px;
+  }
+
+  &__back-link {
+    @include round-icon-button;
+    @include focus-ring;
+
+    &:hover {
+      background: $color-border;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-large;
+    font-weight: 500;
+  }
+
+  &__section {
+    padding: 20px 16px;
+    border-radius: $radius-medium;
+    background: $color-background;
+
+    &_profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 32px;
+    }
+
+    &_logout {
+      padding: 16px;
+      text-align: center;
+    }
+  }
+
+  &__name {
+    margin: 16px 0 4px;
+    font-size: $font-size-large;
+    font-weight: 500;
+  }
+
+  &__login {
+    margin: 0;
+    color: $color-text-secondary;
+  }
+
+  &__section-title {
+    margin: 0 0 20px;
+    font-size: $font-size-base;
+    font-weight: 500;
+    color: $color-primary;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.avatar-upload {
+  &__label {
+    position: relative;
+    display: block;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &__label:focus-within {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: $color-background;
+    background: rgb(0 0 0 / 35%);
+    opacity: 0;
+    transition: opacity $transition-fast;
+
+    .icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__label:hover &__overlay {
+    opacity: 1;
+  }
+}

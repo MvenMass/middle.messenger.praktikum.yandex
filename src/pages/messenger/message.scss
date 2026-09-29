@@ -1,0 +1,58 @@
+@use '../../styles/variables' as *;
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+
+  &__date {
+    align-self: center;
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    border-radius: $radius-medium;
+    font-size: $font-size-small;
+    font-weight: 500;
+    color: $color-background;
+    background: rgb(0 0 0 / 22%);
+  }
+}
+
+.message {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  align-self: flex-start;
+  max-width: min(480px, 75%);
+  padding: 6px 10px 6px 12px;
+  border-radius: $radius-large $radius-large $radius-large 6px;
+  background: $color-message-incoming;
+  box-shadow: 0 1px 2px rgb(16 35 47 / 15%);
+
+  &__text {
+    margin: 0;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  &__time {
+    flex-shrink: 0;
+    margin-bottom: -2px;
+    font-size: 12px;
+    color: $color-text-secondary;
+  }
+
+  &_outgoing {
+    align-self: flex-end;
+    border-radius: $radius-large $radius-large 6px $radius-large;
+    background: $color-message-outgoing;
+  }
+
+  &_outgoing &__time {
+    color: $color-message-outgoing-meta;
+  }
+}

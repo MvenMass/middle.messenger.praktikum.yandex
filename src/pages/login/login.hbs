@@ -1,0 +1,13 @@
+<main class="auth">
+  <section class="auth__card">
+    <div class="auth__logo">{{> IconChat}}</div>
+    <h1 class="auth__title">Вход</h1>
+    <p class="auth__subtitle">Введите логин и пароль от своего аккаунта</p>
+    <form class="auth__form">
+      {{> Input label="Логин" name="login" type="text"}}
+      {{> Input label="Пароль" name="password" type="password"}}
+      {{> Button text="Войти" type="submit"}}
+    </form>
+    {{> Link href="/sign-up" text="Нет аккаунта? Зарегистрироваться"}}
+  </section>
+</main>
