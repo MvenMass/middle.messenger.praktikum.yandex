@@ -1,0 +1,37 @@
+<main class="settings">
+  <div class="settings__column">
+    <header class="settings__header">
+      <nav>
+        <a class="settings__back-link" href="/messenger" aria-label="Назад к чатам">{{> IconBack}}</a>
+      </nav>
+      <h1 class="settings__title">Настройки</h1>
+    </header>
+
+    <section class="settings__section settings__section_profile">
+      <form class="avatar-upload">
+        <label class="avatar-upload__label">
+          {{{avatar}}}
+          <span class="avatar-upload__overlay">{{> IconCamera}}</span>
+          <span class="visually-hidden">Изменить аватар</span>
+          <input class="avatar-upload__input visually-hidden" type="file" name="avatar" accept="image/*">
+        </label>
+      </form>
+      <h2 class="settings__name">{{user.firstName}} {{user.secondName}}</h2>
+      <p class="settings__login">@{{user.login}}</p>
+    </section>
+
+    <section class="settings__section">
+      <h2 class="settings__section-title">Данные профиля</h2>
+      {{{profileForm}}}
+    </section>
+
+    <section class="settings__section">
+      <h2 class="settings__section-title">Пароль</h2>
+      {{{passwordForm}}}
+    </section>
+
+    <section class="settings__section settings__section_logout">
+      {{{logoutLink}}}
+    </section>
+  </div>
+</main>

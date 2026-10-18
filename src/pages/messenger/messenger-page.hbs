@@ -1,0 +1,40 @@
+<main class="messenger">
+  <h1 class="visually-hidden">Чаты</h1>
+
+  <aside class="messenger__sidebar">
+    <header class="sidebar-header">
+      <nav class="sidebar-header__nav">
+        <a class="sidebar-header__profile-link" href="/settings" aria-label="Настройки профиля">
+          {{> IconMenu}}
+        </a>
+      </nav>
+      {{{search}}}
+    </header>
+
+    <ul class="chat-list">
+      {{{chats}}}
+    </ul>
+  </aside>
+
+  <section class="chat">
+    <header class="chat__header">
+      {{{chatAvatar}}}
+      <div class="chat__info">
+        <h2 class="chat__title">{{chat.title}}</h2>
+        <p class="chat__status">{{chat.status}}</p>
+      </div>
+      <button class="chat__menu-button" type="button" aria-label="Действия с чатом">
+        {{> IconMore}}
+      </button>
+    </header>
+
+    <div class="chat__feed">
+      <ul class="message-list">
+        <li class="message-list__date">Сегодня</li>
+        {{{messages}}}
+      </ul>
+    </div>
+
+    {{{composer}}}
+  </section>
+</main>
