@@ -46,9 +46,30 @@
   &__feed {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     flex-grow: 1;
     padding: 16px;
     overflow-y: auto;
+  }
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 720px;
+  margin: auto auto 0;
+  padding: 0;
+  list-style: none;
+
+  &__date {
+    align-self: center;
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    border-radius: $radius-medium;
+    font-size: $font-size-small;
+    font-weight: 500;
+    color: $color-background;
+    background: rgb(0 0 0 / 22%);
   }
 }
