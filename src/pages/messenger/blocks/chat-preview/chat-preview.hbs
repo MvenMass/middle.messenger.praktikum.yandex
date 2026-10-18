@@ -1,0 +1,15 @@
+<li class="chat-preview{{#if isActive}} chat-preview_active{{/if}}">
+  {{{avatar}}}
+  <div class="chat-preview__body">
+    <div class="chat-preview__row">
+      <h2 class="chat-preview__title">{{title}}</h2>
+      <time class="chat-preview__time">{{time}}</time>
+    </div>
+    <div class="chat-preview__row">
+      <p class="chat-preview__message">{{lastMessage}}</p>
+      {{#if unreadCount}}
+        <span class="chat-preview__badge">{{unreadCount}}</span>
+      {{/if}}
+    </div>
+  </div>
+</li>
