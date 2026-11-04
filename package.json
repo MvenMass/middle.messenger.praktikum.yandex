@@ -1,0 +1,40 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "Учебный мессенджер для Яндекс Практикума",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "start": "npm run build && vite preview",
+    "lint": "npm run lint:types && npm run lint:scripts && npm run lint:styles",
+    "lint:types": "tsc --noEmit",
+    "lint:scripts": "eslint .",
+    "lint:styles": "stylelint \"src/**/*.scss\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MvenMass/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MvenMass/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/MvenMass/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.13.0",
+    "globals": "17.13.0",
+    "sass": "1.105.0",
+    "stylelint": "17.16.0",
+    "stylelint-config-standard-scss": "17.0.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.2",
+    "vite": "8.3.1"
+  },
+  "dependencies": {
+    "handlebars": "4.7.9"
+  }
+}

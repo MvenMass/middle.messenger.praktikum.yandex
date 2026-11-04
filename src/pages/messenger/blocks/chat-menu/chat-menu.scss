@@ -1,0 +1,39 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.chat-menu {
+  position: relative;
+
+  &__toggle {
+    @include round-icon-button;
+    @include focus-ring;
+  }
+
+  &__list {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    z-index: 1;
+    min-width: 220px;
+    margin: 0;
+    padding: 6px 0;
+    border-radius: $radius-medium;
+    list-style: none;
+    background: $color-background;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+  }
+
+  &__item {
+    width: 100%;
+    padding: 10px 16px;
+    border: none;
+    text-align: left;
+    color: $color-text;
+    background: transparent;
+    cursor: pointer;
+
+    &:hover {
+      background: $color-surface;
+    }
+  }
+}

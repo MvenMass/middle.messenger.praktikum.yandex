@@ -1,0 +1,9 @@
+<form class="composer{{#if hasError}} composer_invalid{{/if}}" novalidate>
+  <label class="composer__field">
+    <span class="visually-hidden">Сообщение</span>
+    {{{input}}}
+  </label>
+  <button class="composer__send" type="submit" aria-label="Отправить">
+    {{> IconSend}}
+  </button>
+</form>

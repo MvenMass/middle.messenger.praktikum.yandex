@@ -1,0 +1,25 @@
+@use '../../styles/variables' as *;
+
+.messenger {
+  display: grid;
+  grid-template-columns: $sidebar-width 1fr;
+  height: 100vh;
+
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-right: 1px solid $color-border;
+    background: $color-background;
+  }
+}
+
+@media (width <= 768px) {
+  .messenger {
+    grid-template-columns: 1fr;
+
+    .chat {
+      display: none;
+    }
+  }
+}
