@@ -1,0 +1,15 @@
+<div class="chat-menu">
+  <button class="chat-menu__toggle" type="button" aria-label="Действия с чатом" aria-expanded="{{isOpen}}" data-action="toggle">
+    {{> IconMore}}
+  </button>
+  {{#if isOpen}}
+    <ul class="chat-menu__list">
+      <li>
+        <button class="chat-menu__item" type="button" data-action="add-user">Добавить пользователя</button>
+      </li>
+      <li>
+        <button class="chat-menu__item" type="button" data-action="remove-user">Удалить пользователя</button>
+      </li>
+    </ul>
+  {{/if}}
+</div>

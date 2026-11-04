@@ -1,6 +1,23 @@
+@use '../../styles/variables' as *;
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 20px;
   width: 100%;
+
+  &__message {
+    margin: 0;
+    font-size: $font-size-small;
+    text-align: center;
+    color: $color-success;
+
+    &:empty {
+      display: none;
+    }
+
+    &_error {
+      color: $color-danger;
+    }
+  }
 }

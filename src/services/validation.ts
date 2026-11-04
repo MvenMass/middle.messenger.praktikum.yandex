@@ -44,6 +44,7 @@ const rulesByFieldName: Record<string, ValidationRule> = {
   old_password: passwordRule,
   new_password: passwordRule,
   message: requiredRule,
+  title: requiredRule,
 };
 
 export function getValidationError(fieldName: string, value: string): string {

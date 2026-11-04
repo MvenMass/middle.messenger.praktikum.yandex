@@ -10,6 +10,7 @@ export interface BlockProps {
 
 type LifecycleEvents = {
   mount: [];
+  unmount: [];
   render: [];
 };
 
@@ -48,7 +49,7 @@ function toTemplateValue(value: unknown): unknown {
   return value;
 }
 
-export abstract class Block<Props extends BlockProps = BlockProps> {
+export class Block<Props extends BlockProps = BlockProps> {
   private static lastId = 0;
 
   readonly id = `block-${++Block.lastId}`;
@@ -63,6 +64,7 @@ export abstract class Block<Props extends BlockProps = BlockProps> {
     this.props = props;
 
     this.eventBus.on('mount', () => this.handleMount());
+    this.eventBus.on('unmount', () => this.handleUnmount());
     this.eventBus.on('render', () => this.handleRender());
 
     this.eventBus.emit('render');
@@ -92,9 +94,17 @@ export abstract class Block<Props extends BlockProps = BlockProps> {
     this.eventBus.emit('mount');
   }
 
-  protected abstract render(): string;
+  dispatchComponentWillUnmount(): void {
+    this.eventBus.emit('unmount');
+  }
+
+  protected render(): string {
+    return '';
+  }
 
   protected componentDidMount(): void {}
+
+  protected componentWillUnmount(): void {}
 
   protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
     const propNames = Object.keys(newProps) as (keyof Props)[];
@@ -109,6 +119,11 @@ export abstract class Block<Props extends BlockProps = BlockProps> {
   private handleMount(): void {
     this.componentDidMount();
     this.getChildren().forEach((child) => child.dispatchComponentDidMount());
+  }
+
+  private handleUnmount(): void {
+    this.getChildren().forEach((child) => child.dispatchComponentWillUnmount());
+    this.componentWillUnmount();
   }
 
   private handleRender(): void {

@@ -1,11 +1,16 @@
-@use '../../../../styles/variables' as *;
+@use '../../styles/variables' as *;
 
 .chat-preview {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
   padding: 9px;
+  border: none;
   border-radius: $radius-medium;
+  text-align: left;
+  color: inherit;
+  background: transparent;
   cursor: pointer;
   transition: background-color $transition-fast;
 
@@ -14,6 +19,7 @@
   }
 
   &__body {
+    display: block;
     flex-grow: 1;
     min-width: 0;
   }
@@ -30,7 +36,6 @@
   }
 
   &__title {
-    margin: 0;
     overflow: hidden;
     font-size: 16px;
     font-weight: 500;
@@ -45,7 +50,6 @@
   }
 
   &__message {
-    margin: 0;
     overflow: hidden;
     color: $color-text-secondary;
     white-space: nowrap;

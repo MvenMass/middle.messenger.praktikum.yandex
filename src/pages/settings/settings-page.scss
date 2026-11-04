@@ -65,6 +65,16 @@
     color: $color-text-secondary;
   }
 
+  &__error {
+    margin: 12px 0 0;
+    font-size: $font-size-small;
+    color: $color-danger;
+
+    &:empty {
+      display: none;
+    }
+  }
+
   &__section-title {
     margin: 0 0 20px;
     font-size: $font-size-base;

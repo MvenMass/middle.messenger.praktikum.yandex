@@ -1,4 +1,5 @@
 <form class="form{{#if className}} {{className}}{{/if}}" novalidate>
   {{{fields}}}
+  <p class="form__message{{#if isError}} form__message_error{{/if}}">{{message}}</p>
   {{{submitButton}}}
 </form>

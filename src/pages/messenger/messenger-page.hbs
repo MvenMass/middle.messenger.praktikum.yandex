@@ -4,37 +4,62 @@
   <aside class="messenger__sidebar">
     <header class="sidebar-header">
       <nav class="sidebar-header__nav">
-        <a class="sidebar-header__profile-link" href="/settings" aria-label="Настройки профиля">
+        <a class="sidebar-header__button" href="/settings" aria-label="Настройки профиля">
           {{> IconMenu}}
         </a>
       </nav>
       {{{search}}}
+      <button class="sidebar-header__button" type="button" aria-label="Создать чат" data-action="create-chat">
+        {{> IconPlus}}
+      </button>
     </header>
 
     <ul class="chat-list">
-      {{{chats}}}
+      {{#each chats}}
+        <li>
+          <button class="chat-preview{{#if isActive}} chat-preview_active{{/if}}" type="button" data-chat-id="{{id}}">
+            {{> Avatar avatar size="medium"}}
+            <span class="chat-preview__body">
+              <span class="chat-preview__row">
+                <span class="chat-preview__title">{{title}}</span>
+                <span class="chat-preview__time">{{time}}</span>
+              </span>
+              <span class="chat-preview__row">
+                <span class="chat-preview__message">{{lastMessage}}</span>
+                {{#if unreadCount}}
+                  <span class="chat-preview__badge">{{unreadCount}}</span>
+                {{/if}}
+              </span>
+            </span>
+          </button>
+        </li>
+      {{else}}
+        <li class="chat-list__empty">Чатов пока нет. Создайте первый с помощью кнопки «+»</li>
+      {{/each}}
     </ul>
   </aside>
 
   <section class="chat">
-    <header class="chat__header">
-      {{{chatAvatar}}}
-      <div class="chat__info">
-        <h2 class="chat__title">{{chat.title}}</h2>
-        <p class="chat__status">{{chat.status}}</p>
+    {{#if activeChat}}
+      <header class="chat__header">
+        {{> Avatar activeChat.avatar size="small"}}
+        <h2 class="chat__title">{{activeChat.title}}</h2>
+        {{{chatMenu}}}
+      </header>
+
+      <div class="chat__feed">
+        <p class="chat__notice">Сообщений пока нет</p>
       </div>
-      <button class="chat__menu-button" type="button" aria-label="Действия с чатом">
-        {{> IconMore}}
-      </button>
-    </header>
 
-    <div class="chat__feed">
-      <ul class="message-list">
-        <li class="message-list__date">Сегодня</li>
-        {{{messages}}}
-      </ul>
-    </div>
-
-    {{{composer}}}
+      {{{composer}}}
+    {{else}}
+      <div class="chat__feed">
+        <p class="chat__notice">Выберите чат, чтобы начать общение</p>
+      </div>
+    {{/if}}
   </section>
+
+  {{{createChatModal}}}
+  {{{addUserModal}}}
+  {{{removeUserModal}}}
 </main>

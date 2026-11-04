@@ -1,30 +1,52 @@
 import './styles/main.scss';
-import { registerIcons } from './components';
-import type { Block } from './core/block';
-import { ErrorPage, LoginPage, MessengerPage, SettingsPage, SignUpPage } from './pages';
+import { registerAvatar, registerIcons } from './components';
+import { authController } from './controllers/auth-controller';
+import {
+  LoginPage,
+  MessengerPage,
+  NotFoundPage,
+  ServerErrorPage,
+  SettingsPage,
+  SignUpPage,
+} from './pages';
+import { router, Routes } from './routes';
+import { store } from './store/store';
 
-type PageFactory = () => Block;
+const guestPaths: string[] = [Routes.Login, Routes.SignUp];
+const publicPaths: string[] = [Routes.NotFound, Routes.ServerError];
 
-const pagesByPath: Record<string, PageFactory> = {
-  '/': () => new LoginPage(),
-  '/sign-up': () => new SignUpPage(),
-  '/messenger': () => new MessengerPage(),
-  '/settings': () => new SettingsPage(),
-  '/500': () => new ErrorPage({ code: '500', text: 'Что-то сломалось на сервере. Мы уже чиним' }),
-};
+function checkAccess(pathname: string): string | null {
+  const isAuthorized = store.getState().user !== null;
+  const isGuestPath = guestPaths.includes(pathname);
 
-const createNotFoundPage: PageFactory = () => new ErrorPage({ code: '404', text: 'Такой страницы нет' });
+  if (publicPaths.includes(pathname)) {
+    return null;
+  }
 
-registerIcons();
+  if (!isAuthorized && !isGuestPath) {
+    return Routes.Login;
+  }
 
-const appRoot = document.querySelector<HTMLElement>('#app');
+  if (isAuthorized && isGuestPath) {
+    return Routes.Messenger;
+  }
 
-if (!appRoot) {
-  throw new Error('Не найден корневой элемент #app');
+  return null;
 }
 
-const createPage = pagesByPath[window.location.pathname] ?? createNotFoundPage;
-const page = createPage();
+registerIcons();
+registerAvatar();
 
-appRoot.replaceChildren(page.getContent());
-page.dispatchComponentDidMount();
+router
+  .use(Routes.Login, LoginPage)
+  .use(Routes.SignUp, SignUpPage)
+  .use(Routes.Messenger, MessengerPage)
+  .use(Routes.Settings, SettingsPage)
+  .use(Routes.NotFound, NotFoundPage)
+  .use(Routes.ServerError, ServerErrorPage)
+  .useMiddleware(checkAccess);
+
+authController
+  .fetchUser()
+  .catch(() => window.history.replaceState({}, '', Routes.ServerError))
+  .finally(() => router.start());
