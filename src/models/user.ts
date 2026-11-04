@@ -1,9 +1,7 @@
-import type { AvatarData } from './avatar';
-
 export interface UserName {
-  firstName: string;
-  secondName: string;
-  displayName: string;
+  first_name: string;
+  second_name: string;
+  display_name: string | null;
 }
 
 export interface UserContacts {
@@ -12,4 +10,39 @@ export interface UserContacts {
   phone: string;
 }
 
-export type UserProfile = UserName & UserContacts & AvatarData;
+export interface User extends UserName, UserContacts {
+  id: number;
+  avatar: string | null;
+}
+
+export type SignInData = {
+  login: string;
+  password: string;
+};
+
+export type SignUpData = {
+  first_name: string;
+  second_name: string;
+  login: string;
+  email: string;
+  phone: string;
+  password: string;
+};
+
+export type ProfileData = {
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  phone: string;
+};
+
+export type PasswordData = {
+  oldPassword: string;
+  newPassword: string;
+};
+
+export type UserSearchData = {
+  login: string;
+};

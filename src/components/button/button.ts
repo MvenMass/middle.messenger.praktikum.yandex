@@ -5,6 +5,7 @@ import './button.scss';
 interface ButtonProps extends BlockProps {
   text: string;
   type: 'button' | 'submit';
+  modifier?: 'danger';
 }
 
 export class Button extends Block<ButtonProps> {

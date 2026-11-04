@@ -1,20 +1,21 @@
-import type { AvatarData } from './avatar';
-
-export interface ChatSummary extends AvatarData {
-  title: string;
-  lastMessage: string;
+export interface LastMessage {
+  content: string;
   time: string;
-  unreadCount: number;
-  isActive: boolean;
 }
 
-export interface ChatDetails extends AvatarData {
+export interface Chat {
+  id: number;
   title: string;
-  status: string;
+  avatar: string | null;
+  unread_count: number;
+  last_message: LastMessage | null;
 }
 
-export interface ChatMessage {
-  text: string;
-  time: string;
-  isOutgoing: boolean;
-}
+export type CreateChatData = {
+  title: string;
+};
+
+export type ChatUsersData = {
+  users: number[];
+  chatId: number;
+};

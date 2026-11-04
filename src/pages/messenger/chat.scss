@@ -1,5 +1,4 @@
 @use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
 
 .chat {
   display: flex;
@@ -21,26 +20,15 @@
     background: $color-background;
   }
 
-  &__info {
+  &__title {
     flex-grow: 1;
     min-width: 0;
-  }
-
-  &__title {
     margin: 0;
+    overflow: hidden;
     font-size: 16px;
     font-weight: 500;
-  }
-
-  &__status {
-    margin: 2px 0 0;
-    font-size: $font-size-small;
-    color: $color-text-secondary;
-  }
-
-  &__menu-button {
-    @include round-icon-button;
-    @include focus-ring;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__feed {
@@ -50,22 +38,10 @@
     padding: 16px;
     overflow-y: auto;
   }
-}
 
-.message-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 100%;
-  max-width: 720px;
-  margin: auto auto 0;
-  padding: 0;
-  list-style: none;
-
-  &__date {
-    align-self: center;
-    margin-bottom: 8px;
-    padding: 4px 10px;
+  &__notice {
+    margin: auto;
+    padding: 4px 12px;
     border-radius: $radius-medium;
     font-size: $font-size-small;
     font-weight: 500;

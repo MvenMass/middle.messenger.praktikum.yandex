@@ -7,7 +7,7 @@
   gap: 8px;
   padding: 8px 12px;
 
-  &__profile-link {
+  &__button {
     @include round-icon-button;
     @include focus-ring;
   }
@@ -19,4 +19,11 @@
   padding: 0 8px 8px;
   overflow-y: auto;
   list-style: none;
+
+  &__empty {
+    padding: 24px 16px;
+    font-size: $font-size-small;
+    text-align: center;
+    color: $color-text-secondary;
+  }
 }

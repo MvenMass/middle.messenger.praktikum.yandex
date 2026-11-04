@@ -19,6 +19,7 @@ $avatar-gradients: (
   border-radius: 50%;
   font-weight: 500;
   color: $color-background;
+  object-fit: cover;
   user-select: none;
 
   &_size_small {

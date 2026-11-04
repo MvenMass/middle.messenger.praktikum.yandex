@@ -10,14 +10,15 @@
     <section class="settings__section settings__section_profile">
       <form class="avatar-upload">
         <label class="avatar-upload__label">
-          {{{avatar}}}
+          {{> Avatar profile.avatar size="large"}}
           <span class="avatar-upload__overlay">{{> IconCamera}}</span>
           <span class="visually-hidden">Изменить аватар</span>
           <input class="avatar-upload__input visually-hidden" type="file" name="avatar" accept="image/*">
         </label>
       </form>
-      <h2 class="settings__name">{{user.firstName}} {{user.secondName}}</h2>
-      <p class="settings__login">@{{user.login}}</p>
+      <p class="settings__error">{{avatarError}}</p>
+      <h2 class="settings__name">{{profile.name}}</h2>
+      <p class="settings__login">@{{profile.login}}</p>
     </section>
 
     <section class="settings__section">
@@ -31,7 +32,7 @@
     </section>
 
     <section class="settings__section settings__section_logout">
-      {{{logoutLink}}}
+      {{{logoutButton}}}
     </section>
   </div>
 </main>
