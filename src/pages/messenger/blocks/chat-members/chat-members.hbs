@@ -1,0 +1,21 @@
+<div class="chat-members">
+  <ul class="chat-members__list">
+    {{#each members}}
+      <li class="chat-members__item">
+        {{> Avatar avatar size="small"}}
+        <span class="chat-members__info">
+          <span class="chat-members__name">{{name}}</span>
+          <span class="chat-members__login">@{{login}}</span>
+        </span>
+        {{#if isCurrentUser}}
+          <span class="chat-members__note">Это вы</span>
+        {{else}}
+          <button class="chat-members__remove" type="button" data-user-id="{{id}}">Удалить</button>
+        {{/if}}
+      </li>
+    {{else}}
+      <li class="chat-members__empty">Загружаем участников…</li>
+    {{/each}}
+  </ul>
+  <p class="chat-members__error">{{error}}</p>
+</div>

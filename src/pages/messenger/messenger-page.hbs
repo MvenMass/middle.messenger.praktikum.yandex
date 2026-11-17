@@ -1,4 +1,4 @@
-<main class="messenger">
+<main class="messenger{{#if activeChat}} messenger_chat-open{{/if}}">
   <h1 class="visually-hidden">Чаты</h1>
 
   <aside class="messenger__sidebar">
@@ -14,52 +14,30 @@
       </button>
     </header>
 
-    <ul class="chat-list">
-      {{#each chats}}
-        <li>
-          <button class="chat-preview{{#if isActive}} chat-preview_active{{/if}}" type="button" data-chat-id="{{id}}">
-            {{> Avatar avatar size="medium"}}
-            <span class="chat-preview__body">
-              <span class="chat-preview__row">
-                <span class="chat-preview__title">{{title}}</span>
-                <span class="chat-preview__time">{{time}}</span>
-              </span>
-              <span class="chat-preview__row">
-                <span class="chat-preview__message">{{lastMessage}}</span>
-                {{#if unreadCount}}
-                  <span class="chat-preview__badge">{{unreadCount}}</span>
-                {{/if}}
-              </span>
-            </span>
-          </button>
-        </li>
-      {{else}}
-        <li class="chat-list__empty">Чатов пока нет. Создайте первый с помощью кнопки «+»</li>
-      {{/each}}
-    </ul>
+    {{{chatList}}}
   </aside>
 
   <section class="chat">
     {{#if activeChat}}
       <header class="chat__header">
+        <button class="chat__back" type="button" aria-label="Назад к списку чатов" data-action="close-chat">
+          {{> IconBack}}
+        </button>
         {{> Avatar activeChat.avatar size="small"}}
         <h2 class="chat__title">{{activeChat.title}}</h2>
         {{{chatMenu}}}
       </header>
 
-      <div class="chat__feed">
-        <p class="chat__notice">Сообщений пока нет</p>
-      </div>
-
+      {{{messageFeed}}}
       {{{composer}}}
     {{else}}
-      <div class="chat__feed">
-        <p class="chat__notice">Выберите чат, чтобы начать общение</p>
-      </div>
+      <p class="chat__placeholder">Выберите чат, чтобы начать общение</p>
     {{/if}}
   </section>
 
   {{{createChatModal}}}
   {{{addUserModal}}}
-  {{{removeUserModal}}}
+  {{{membersModal}}}
+  {{{chatAvatarModal}}}
+  {{{deleteChatModal}}}
 </main>

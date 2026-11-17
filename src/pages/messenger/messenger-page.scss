@@ -21,5 +21,19 @@
     .chat {
       display: none;
     }
+
+    .chat__back {
+      display: inline-flex;
+    }
+  }
+
+  .messenger_chat-open {
+    .messenger__sidebar {
+      display: none;
+    }
+
+    .chat {
+      display: flex;
+    }
   }
 }

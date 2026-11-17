@@ -1,5 +1,6 @@
-{{#if imageUrl}}
-  <img class="avatar avatar_size_{{size}}" src="{{imageUrl}}" alt="">
-{{else}}
-  <span class="avatar avatar_size_{{size}} avatar_color_{{color}}" aria-hidden="true">{{initials}}</span>
-{{/if}}
+<span class="avatar avatar_size_{{size}} avatar_color_{{color}}" aria-hidden="true">
+  {{initials}}
+  {{#if imageUrl}}
+    <img class="avatar__image" src="{{imageUrl}}" alt="">
+  {{/if}}
+</span>

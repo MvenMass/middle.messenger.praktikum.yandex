@@ -15,6 +15,10 @@ export interface User extends UserName, UserContacts {
   avatar: string | null;
 }
 
+export interface ChatUser extends User {
+  role: string;
+}
+
 export type SignInData = {
   login: string;
   password: string;

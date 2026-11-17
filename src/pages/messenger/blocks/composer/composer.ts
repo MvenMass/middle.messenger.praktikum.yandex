@@ -1,7 +1,7 @@
 import { Input } from '../../../../components';
-import { chatController } from '../../../../controllers/chat-controller';
+import { messageController } from '../../../../controllers/message-controller';
 import { Block, type BlockEvents, type BlockProps } from '../../../../core/block';
-import { getFormValues } from '../../../../services/form-values';
+import { SocketClosedError } from '../../../../core/socket-errors';
 import { getValidationError } from '../../../../services/validation';
 import template from './composer.hbs?raw';
 import './composer.scss';
@@ -57,9 +57,19 @@ export class Composer extends Block<ComposerProps> {
     const isMessageValid = this.validate();
     const form = this.getContent();
 
-    if (isMessageValid && form instanceof HTMLFormElement) {
-      chatController.sendMessage(getFormValues(form));
+    if (!isMessageValid || !(form instanceof HTMLFormElement)) {
+      return;
+    }
+
+    try {
+      messageController.sendMessage(this.props.input.getValue().trim());
       form.reset();
+    } catch (error) {
+      if (!(error instanceof SocketClosedError)) {
+        throw error;
+      }
+
+      this.setProps({ hasError: true });
     }
   }
 }

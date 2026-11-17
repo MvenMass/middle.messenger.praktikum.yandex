@@ -31,8 +31,8 @@ export class Router {
   }
 
   start(): void {
-    window.addEventListener('popstate', () => this.handleRoute(window.location.pathname));
-    document.addEventListener('click', (event) => this.handleLinkClick(event));
+    window.onpopstate = () => this.handleRoute(window.location.pathname);
+    document.onclick = (event) => this.handleLinkClick(event);
 
     this.handleRoute(window.location.pathname);
   }

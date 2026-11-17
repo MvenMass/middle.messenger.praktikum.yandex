@@ -4,12 +4,11 @@
   </button>
   {{#if isOpen}}
     <ul class="chat-menu__list">
-      <li>
-        <button class="chat-menu__item" type="button" data-action="add-user">Добавить пользователя</button>
-      </li>
-      <li>
-        <button class="chat-menu__item" type="button" data-action="remove-user">Удалить пользователя</button>
-      </li>
+      {{#each items}}
+        <li>
+          <button class="chat-menu__item{{#if isDanger}} chat-menu__item_danger{{/if}}" type="button" data-index="{{@index}}">{{text}}</button>
+        </li>
+      {{/each}}
     </ul>
   {{/if}}
 </div>
