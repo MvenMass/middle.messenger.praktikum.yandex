@@ -1,0 +1,12 @@
+<ul class="message-list">
+  {{#if hasMoreMessages}}
+    <li class="message-list__more-item">
+      <button class="message-list__more" type="button">Показать ранние сообщения</button>
+    </li>
+  {{/if}}
+  {{#each messages}}
+    {{> Message this}}
+  {{else}}
+    <li class="message-list__empty">Сообщений пока нет</li>
+  {{/each}}
+</ul>

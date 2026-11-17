@@ -3,12 +3,6 @@
     <p class="message-feed__status">{{statusText}}</p>
   {{/if}}
   <div class="message-feed__scroller">
-    <ul class="message-feed__list">
-      {{#each messages}}
-        {{> Message this}}
-      {{else}}
-        <li class="message-feed__empty">Сообщений пока нет</li>
-      {{/each}}
-    </ul>
+    {{{messageList}}}
   </div>
 </div>

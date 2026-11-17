@@ -10,6 +10,7 @@ export interface AppState {
   activeChatId: number | null;
   chatUsers: ChatUser[];
   messages: ChatMessage[];
+  hasMoreMessages: boolean;
   connectionStatus: ConnectionStatus;
 }
 
@@ -24,6 +25,7 @@ const initialState: AppState = {
   activeChatId: null,
   chatUsers: [],
   messages: [],
+  hasMoreMessages: false,
   connectionStatus: 'idle',
 };
 

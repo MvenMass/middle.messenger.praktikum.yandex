@@ -2,6 +2,7 @@
 @use '../../../../styles/mixins' as *;
 
 .composer {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -27,6 +28,22 @@
 
   &_invalid &__input {
     box-shadow: inset 0 0 0 2px $color-danger;
+  }
+
+  &__error {
+    position: absolute;
+    bottom: 100%;
+    left: 36px;
+    margin: 0 0 6px;
+    padding: 2px 8px;
+    border-radius: $radius-small;
+    font-size: $font-size-small;
+    color: $color-danger;
+    background: $color-background;
+
+    &:empty {
+      display: none;
+    }
   }
 
   &__send {

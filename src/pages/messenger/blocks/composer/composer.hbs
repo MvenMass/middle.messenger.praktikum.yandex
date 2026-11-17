@@ -1,4 +1,5 @@
-<form class="composer{{#if hasError}} composer_invalid{{/if}}" novalidate>
+<form class="composer{{#if error}} composer_invalid{{/if}}" novalidate>
+  <p class="composer__error" role="alert">{{error}}</p>
   <label class="composer__field">
     <span class="visually-hidden">Сообщение</span>
     {{{input}}}

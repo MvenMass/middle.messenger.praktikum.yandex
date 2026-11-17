@@ -10,14 +10,18 @@ import { handleRequestFailure } from './handle-request-failure';
 
 const RECONNECT_DELAY = 3000;
 
+const HISTORY_PAGE_SIZE = 20;
+
 class MessageController {
   private transport: WebSocketTransport | null = null;
 
   private reconnectTimerId: ReturnType<typeof setTimeout> | null = null;
 
+  private isHistoryLoading = false;
+
   async connect(chatId: number): Promise<void> {
     this.disconnect();
-    store.set({ messages: [], connectionStatus: 'connecting' });
+    store.set({ messages: [], hasMoreMessages: false, connectionStatus: 'connecting' });
 
     try {
       const transport = await this.openTransport(chatId);
@@ -29,7 +33,7 @@ class MessageController {
 
       this.transport = transport;
       store.set({ connectionStatus: 'online' });
-      transport.send({ type: 'get old', content: '0' });
+      this.requestHistory(transport, 0);
     } catch (error) {
       this.handleConnectionError(chatId, error);
     }
@@ -43,7 +47,18 @@ class MessageController {
 
     this.transport?.close();
     this.transport = null;
+    this.isHistoryLoading = false;
     store.set({ connectionStatus: 'idle' });
+  }
+
+  loadOlderMessages(): void {
+    const { transport } = this;
+    const { messages, hasMoreMessages } = store.getState();
+    const canLoad = hasMoreMessages && !this.isHistoryLoading;
+
+    if (transport && canLoad) {
+      this.requestHistory(transport, messages.length);
+    }
   }
 
   sendMessage(content: string): void {
@@ -52,6 +67,11 @@ class MessageController {
     }
 
     this.transport.send({ type: 'message', content });
+  }
+
+  private requestHistory(transport: WebSocketTransport, offset: number): void {
+    this.isHistoryLoading = true;
+    transport.send({ type: 'get old', content: String(offset) });
   }
 
   private async openTransport(chatId: number): Promise<WebSocketTransport> {
@@ -83,15 +103,29 @@ class MessageController {
 
   private handleSocketData(data: unknown): void {
     if (Array.isArray(data)) {
-      const history = data.filter(isTextMessage).map(toChatMessage).reverse();
-
-      store.set({ messages: history });
+      this.addHistory(data);
       return;
     }
 
     if (isTextMessage(data)) {
       this.addMessage(toChatMessage(data));
     }
+  }
+
+  private addHistory(history: unknown[]): void {
+    const { messages } = store.getState();
+    const loadedIds = new Set(messages.map((message) => message.id));
+    const olderMessages = history
+      .filter(isTextMessage)
+      .map(toChatMessage)
+      .filter((message) => !loadedIds.has(message.id))
+      .reverse();
+
+    this.isHistoryLoading = false;
+    store.set({
+      messages: [...olderMessages, ...messages],
+      hasMoreMessages: history.length >= HISTORY_PAGE_SIZE,
+    });
   }
 
   private addMessage(message: ChatMessage): void {

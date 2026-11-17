@@ -1,4 +1,4 @@
-import { Input } from '../../../../components';
+import { Input } from '../../../../components/input';
 import { messageController } from '../../../../controllers/message-controller';
 import { Block, type BlockEvents, type BlockProps } from '../../../../core/block';
 import { SocketClosedError } from '../../../../core/socket-errors';
@@ -8,13 +8,13 @@ import './composer.scss';
 
 interface ComposerProps extends BlockProps {
   input: Input;
-  hasError: boolean;
+  error: string;
 }
 
 export class Composer extends Block<ComposerProps> {
   constructor() {
     super({
-      hasError: false,
+      error: '',
       input: new Input({
         name: 'message',
         type: 'text',
@@ -27,16 +27,17 @@ export class Composer extends Block<ComposerProps> {
 
   validate(): boolean {
     const { input } = this.props;
-    const hasError = getValidationError(input.name, input.getValue()) !== '';
+    const error = getValidationError(input.name, input.getValue());
 
-    this.setProps({ hasError });
+    this.setProps({ error });
 
-    return !hasError;
+    return error === '';
   }
 
   protected getEvents(): BlockEvents {
     return {
       focusout: (event) => this.handleFocusOut(event),
+      input: () => this.clearError(),
       submit: (event) => this.handleSubmit(event),
     };
   }
@@ -49,6 +50,15 @@ export class Composer extends Block<ComposerProps> {
     if (event.target instanceof HTMLInputElement) {
       this.validate();
     }
+  }
+
+  private clearError(): void {
+    if (this.props.error === '') {
+      return;
+    }
+
+    this.setProps({ error: '' });
+    this.props.input.getContent().focus();
   }
 
   private handleSubmit(event: Event): void {
@@ -69,7 +79,7 @@ export class Composer extends Block<ComposerProps> {
         throw error;
       }
 
-      this.setProps({ hasError: true });
+      this.setProps({ error: error.message });
     }
   }
 }

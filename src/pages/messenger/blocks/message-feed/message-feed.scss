@@ -25,21 +25,4 @@
     padding: 16px;
     overflow-y: auto;
   }
-
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0;
-    list-style: none;
-  }
-
-  &__empty {
-    @include notice-badge;
-
-    align-self: center;
-  }
 }
