@@ -1,0 +1,43 @@
+<main class="messenger{{#if activeChat}} messenger_chat-open{{/if}}">
+  <h1 class="visually-hidden">Чаты</h1>
+
+  <aside class="messenger__sidebar">
+    <header class="sidebar-header">
+      <nav class="sidebar-header__nav">
+        <a class="sidebar-header__button" href="/settings" aria-label="Настройки профиля">
+          {{> IconMenu}}
+        </a>
+      </nav>
+      {{{search}}}
+      <button class="sidebar-header__button" type="button" aria-label="Создать чат" data-action="create-chat">
+        {{> IconPlus}}
+      </button>
+    </header>
+
+    {{{chatList}}}
+  </aside>
+
+  <section class="chat">
+    {{#if activeChat}}
+      <header class="chat__header">
+        <button class="chat__back" type="button" aria-label="Назад к списку чатов" data-action="close-chat">
+          {{> IconBack}}
+        </button>
+        {{> Avatar activeChat.avatar size="small"}}
+        <h2 class="chat__title">{{activeChat.title}}</h2>
+        {{{chatMenu}}}
+      </header>
+
+      {{{messageFeed}}}
+      {{{composer}}}
+    {{else}}
+      <p class="chat__placeholder">Выберите чат, чтобы начать общение</p>
+    {{/if}}
+  </section>
+
+  {{{createChatModal}}}
+  {{{addUserModal}}}
+  {{{membersModal}}}
+  {{{chatAvatarModal}}}
+  {{{deleteChatModal}}}
+</main>

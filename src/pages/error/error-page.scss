@@ -1,0 +1,26 @@
+@use '../../styles/variables' as *;
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 100vh;
+  padding: 16px;
+  text-align: center;
+
+  &__code {
+    margin: 0;
+    font-size: 120px;
+    font-weight: 400;
+    line-height: 1;
+    color: $color-primary;
+  }
+
+  &__text {
+    margin: 0 0 12px;
+    font-size: $font-size-large;
+    color: $color-text-secondary;
+  }
+}

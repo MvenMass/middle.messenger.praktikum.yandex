@@ -1,0 +1,36 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.modal {
+  width: min(400px, calc(100% - 32px));
+  padding: 0;
+  border: none;
+  border-radius: $radius-medium;
+  box-shadow: 0 8px 32px rgb(0 0 0 / 20%);
+
+  &::backdrop {
+    background: rgb(0 0 0 / 40%);
+  }
+
+  &__content {
+    padding: 20px 24px 24px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-large;
+    font-weight: 500;
+  }
+
+  &__close {
+    @include round-icon-button;
+    @include focus-ring;
+  }
+}

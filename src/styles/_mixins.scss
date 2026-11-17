@@ -1,0 +1,37 @@
+@use 'variables' as *;
+
+@mixin round-icon-button($size: 40px) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: $size;
+  height: $size;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  color: $color-text-secondary;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background: $color-surface;
+  }
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+@mixin notice-badge {
+  padding: 4px 12px;
+  border-radius: $radius-medium;
+  font-size: $font-size-small;
+  font-weight: 500;
+  color: $color-background;
+  background: rgb(0 0 0 / 22%);
+}
