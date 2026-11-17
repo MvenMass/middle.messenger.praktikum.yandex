@@ -1,16 +1,16 @@
 import { Block, type BlockEvents, type BlockProps } from '../../core/block';
-import type { Form } from '../form';
 import template from './modal.hbs?raw';
 import './modal.scss';
 
 interface ModalProps extends BlockProps {
   title: string;
-  form: Form;
+  content: Block;
+  onOpen?: () => void;
 }
 
 export class Modal extends Block<ModalProps> {
   open(): void {
-    this.props.form.reset();
+    this.props.onOpen?.();
     this.getDialog().showModal();
   }
 

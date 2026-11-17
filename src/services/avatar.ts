@@ -12,10 +12,25 @@ function getInitials(name: string): string {
     .join('');
 }
 
+function getImageUrl(imagePath: string | null): string {
+  if (!imagePath) {
+    return '';
+  }
+
+  if (/^https?:\/\//.test(imagePath)) {
+    return imagePath;
+  }
+
+  const relativePath = imagePath.replace(/^\/?resources/, '');
+  const separator = relativePath.startsWith('/') ? '' : '/';
+
+  return `${RESOURCES_URL}${separator}${relativePath}`;
+}
+
 export function createAvatar(id: number, name: string, imagePath: string | null): AvatarData {
   return {
     initials: getInitials(name),
     color: (id % AVATAR_COLORS_COUNT) + 1,
-    imageUrl: imagePath ? `${RESOURCES_URL}${imagePath}` : '',
+    imageUrl: getImageUrl(imagePath),
   };
 }

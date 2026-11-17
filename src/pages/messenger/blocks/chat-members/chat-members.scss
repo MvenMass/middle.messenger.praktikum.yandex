@@ -1,0 +1,62 @@
+@use '../../../../styles/variables' as *;
+
+.chat-members {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 320px;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    font-weight: 500;
+  }
+
+  &__login,
+  &__note,
+  &__empty {
+    font-size: $font-size-small;
+    color: $color-text-secondary;
+  }
+
+  &__remove {
+    padding: 6px 12px;
+    border: 1px solid $color-danger;
+    border-radius: $radius-small;
+    color: $color-danger;
+    background: transparent;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-background;
+      background: $color-danger;
+    }
+  }
+
+  &__error {
+    margin: 12px 0 0;
+    font-size: $font-size-small;
+    color: $color-danger;
+
+    &:empty {
+      display: none;
+    }
+  }
+}

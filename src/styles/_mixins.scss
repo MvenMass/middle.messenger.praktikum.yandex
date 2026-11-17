@@ -26,3 +26,12 @@
     outline-offset: 2px;
   }
 }
+
+@mixin notice-badge {
+  padding: 4px 12px;
+  border-radius: $radius-medium;
+  font-size: $font-size-small;
+  font-weight: 500;
+  color: $color-background;
+  background: rgb(0 0 0 / 22%);
+}

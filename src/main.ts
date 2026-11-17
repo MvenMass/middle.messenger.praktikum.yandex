@@ -1,5 +1,5 @@
 import './styles/main.scss';
-import { registerAvatar, registerIcons } from './components';
+import { registerAvatar, registerIcons, registerMessage } from './components';
 import { authController } from './controllers/auth-controller';
 import {
   LoginPage,
@@ -36,6 +36,7 @@ function checkAccess(pathname: string): string | null {
 
 registerIcons();
 registerAvatar();
+registerMessage();
 
 router
   .use(Routes.Login, LoginPage)

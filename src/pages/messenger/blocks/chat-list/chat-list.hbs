@@ -1,0 +1,27 @@
+<ul class="chat-list">
+  {{#each chats}}
+    <li>
+      <button class="chat-preview{{#if isActive}} chat-preview_active{{/if}}" type="button" data-chat-id="{{id}}">
+        {{> Avatar avatar size="medium"}}
+        <span class="chat-preview__body">
+          <span class="chat-preview__row">
+            <span class="chat-preview__title">{{title}}</span>
+            <span class="chat-preview__time">{{time}}</span>
+          </span>
+          <span class="chat-preview__row">
+            <span class="chat-preview__message">{{lastMessage}}</span>
+            {{#if unreadCount}}
+              <span class="chat-preview__badge">{{unreadCount}}</span>
+            {{/if}}
+          </span>
+        </span>
+      </button>
+    </li>
+  {{else}}
+    {{#if isSearch}}
+      <li class="chat-list__empty">По вашему запросу чатов не найдено</li>
+    {{else}}
+      <li class="chat-list__empty">Чатов пока нет. Создайте первый с помощью кнопки «+»</li>
+    {{/if}}
+  {{/each}}
+</ul>

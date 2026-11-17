@@ -1,4 +1,5 @@
 import { HttpError, NetworkError, ServerError, TimeoutError } from '../core/http-errors';
+import { SocketClosedError, SocketConnectionError } from '../core/socket-errors';
 import { ChatNotSelectedError, UserNotFoundError } from './app-errors';
 
 const reasonMessages: Record<string, string> = {
@@ -20,6 +21,8 @@ export function getErrorMessage(error: unknown): string {
 
   const isKnownError = error instanceof NetworkError
     || error instanceof TimeoutError
+    || error instanceof SocketClosedError
+    || error instanceof SocketConnectionError
     || error instanceof UserNotFoundError
     || error instanceof ChatNotSelectedError;
 

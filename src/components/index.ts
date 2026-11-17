@@ -5,4 +5,5 @@ export { FormField } from './form-field';
 export { registerIcons } from './icon';
 export { Input } from './input';
 export { Link } from './link';
+export { registerMessage } from './message';
 export { Modal } from './modal';

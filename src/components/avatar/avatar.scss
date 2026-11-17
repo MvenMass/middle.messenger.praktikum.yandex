@@ -15,12 +15,21 @@ $avatar-gradients: (
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   flex-shrink: 0;
+  overflow: hidden;
   border-radius: 50%;
   font-weight: 500;
   color: $color-background;
-  object-fit: cover;
   user-select: none;
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   &_size_small {
     width: 42px;

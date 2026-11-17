@@ -35,5 +35,9 @@
     &:hover {
       background: $color-surface;
     }
+
+    &_danger {
+      color: $color-danger;
+    }
   }
 }

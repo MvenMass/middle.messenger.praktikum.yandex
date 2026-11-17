@@ -19,3 +19,11 @@ export type ChatUsersData = {
   users: number[];
   chatId: number;
 };
+
+export type ChatSearchParams = {
+  title?: string;
+};
+
+export type DeleteChatData = {
+  chatId: number;
+};

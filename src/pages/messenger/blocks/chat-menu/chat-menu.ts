@@ -2,18 +2,20 @@ import { Block, type BlockEvents, type BlockProps } from '../../../../core/block
 import template from './chat-menu.hbs?raw';
 import './chat-menu.scss';
 
-interface ChatMenuOptions {
-  onAddUser: () => void;
-  onRemoveUser: () => void;
+interface ChatMenuItem {
+  text: string;
+  onSelect: () => void;
+  isDanger?: boolean;
 }
 
-interface ChatMenuProps extends BlockProps, ChatMenuOptions {
+interface ChatMenuProps extends BlockProps {
+  items: ChatMenuItem[];
   isOpen: boolean;
 }
 
 export class ChatMenu extends Block<ChatMenuProps> {
-  constructor(options: ChatMenuOptions) {
-    super({ ...options, isOpen: false });
+  constructor(items: ChatMenuItem[]) {
+    super({ items, isOpen: false });
   }
 
   protected getEvents(): BlockEvents {
@@ -28,16 +30,10 @@ export class ChatMenu extends Block<ChatMenuProps> {
 
   private handleClick(event: Event): void {
     const button = event.target instanceof Element ? event.target.closest('button') : null;
-    const action = button?.dataset.action;
+    const isToggle = button?.dataset.action === 'toggle';
+    const selectedItem = this.props.items[Number(button?.dataset.index)];
 
-    if (action === 'add-user') {
-      this.props.onAddUser();
-    }
-
-    if (action === 'remove-user') {
-      this.props.onRemoveUser();
-    }
-
-    this.setProps({ isOpen: action === 'toggle' && !this.props.isOpen });
+    this.setProps({ isOpen: isToggle && !this.props.isOpen });
+    selectedItem?.onSelect();
   }
 }
